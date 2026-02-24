@@ -73,26 +73,6 @@ Please modify your response to the correct format.
 [Detect]
 """
 
-"""
-Check and update your response as correct format!
-
-Previous response: {response}
-
-Correct response format is as follows:
-# Example 1
-[airplane, person]
-
-# Example 2
-[old man, person wearing a hat, green car]
-
-# Example 3
-[car, person, tree]
-
-# Example 4
-[bus, horse]
-
-Please modify your response to the correct format.
-"""
 
 # Pattern to match for 'get_objects_of_interest'
 PATTERN_GET_OBJECTS_OF_INTEREST = r"\[[^\]]*\]"
@@ -145,73 +125,6 @@ Just include ++ in front of and behind of the selected "object_name" candidate. 
 [Options] {obj_str}, camera
 
 [Perspective]
-"""
-
-PROMPT_GET_OBJECT_ORIENTATION_FB="""
-Given an image of a specific object, identify if the {obj} is facing front or back.
-If the facing direction cannot be identified, respond with "none".
-
-Your answer must be either "front","back", or "none" only, and nothing else should be included in the response.
-"""
-
-PROMPT_GET_OBJECT_ORIENTATION_LR="""
-Given an image of a specific object, identify if the {obj} is facing left or right.
-If the facing direction cannot be identified, respond with "none".
-
-Your answer must be either "left","right", or "none" only, and nothing else should be included in the response.
-"""
-
-PROMPT_OBJECT_ORIENTATION_FB_CHECK="""
-Given an image of a specific object, verify whether the facing direction (front/back) you inferred is correct.
-
-Your inferred result is “{res}.” In this context, if the answer is “none,” it means the object is in a neutral position with respect to that direction.
-
-Based on the inference result above and the input image, analyze whether the facing direction is correct.
-
-If it is correct, return the original result as is.
-
-If it is not correct, return the result that corresponds to the true answer.
-
-The permissible answer options are:
-
-[Options] front, back, none
-
-Do not include any information other than the correct answer.
-Let's think step by step!
-"""
-
-PROMPT_OBJECT_ORIENTATION_LR_CHECK="""
-Given an image of a specific object, verify whether the facing direction (left/right) you inferred is correct.
-
-Your inferred result is “{res}.” In this context, if the answer is “none,” it means the object is in a neutral position with respect to that direction.
-
-Based on the inference result above and the input image, analyze whether the facing direction is correct.
-
-If it is correct, return the original result as is.
-
-If it is not correct, return the result that corresponds to the true answer.
-
-The permissible answer options are:
-
-[Options] left, right, none
-
-Do not include any information other than the correct answer.
-Let's think step by step!
-"""
-
-
-PROMPT_GET_OBJECT_ORIENTATION_org="""
-Given an image of a specific object, determine which direction is the object facing in the image: left, right, forward, backward.
-
-You should focus on identifying and reasoning about the object named "{obj}".
-
-If the object is named "Unknown", just consider about the image.
-
-Your answer must consist of only one of these four options.
-
-Never include anything else in your response.
-
-Let's think step by step.
 """
 
 # Pattern to match for 'get_reference_viewer'
@@ -361,10 +274,6 @@ class PromptParser:
             "pattern_get_objects_of_interest": PATTERN_GET_OBJECTS_OF_INTEREST,
             "get_reference_viewer": PROMPT_GET_REFERENCE_VIEWER,
             "pattern_reference_viewer": PATTERN_GET_REFERENCE_VIEWER,
-            "get_object_orientation_fb" : PROMPT_GET_OBJECT_ORIENTATION_FB,
-            "get_object_orientation_lr" : PROMPT_GET_OBJECT_ORIENTATION_LR,
-            "object_orientation_fb_check" : PROMPT_OBJECT_ORIENTATION_FB_CHECK,
-            "object_orientation_lr_check" : PROMPT_OBJECT_ORIENTATION_LR_CHECK,
             "lr_simple_one" : PROMPT_LEFT_RIGHT_SIMPLE_ONE,
             "lr_simple_two" : PROMPT_LEFT_RIGHT_SIMPLE_TWO,
             "closer_simple" : PROMPT_CLOSER_SIMPLE,
