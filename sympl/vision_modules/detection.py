@@ -1,10 +1,3 @@
-'''
-Scene Abstraction:
-- Detect and segment each object of interest
-- Models:
-    - Grounding DINO (https://github.com/IDEA-Research/GroundingDINO)
-    - SAM (https://github.com/facebookresearch/segment-anything)
-'''
 import os
 import io
 import sys
@@ -50,22 +43,13 @@ class DetectionModule:
         # Load model
         self.detection_model = load_model(config_path, ckpt_path)
         self.detection_model.to(self.device)
-        # print("* [INFO] Loaded GroundingDINO!")
 
-        # Load SAM
-        #self.segmentation_model = sam_model_registry["default"](
-        #    checkpoint=config.segmentation.ckpt_path).to(device=self.device)
-        #self.segmentation_predictor = SamPredictor(self.segmentation_model)
-        # print("* [INFO] Loaded SAM!")
 
     def detection_process_image(
         self, 
         image: Image.Image,
     ):
-        '''
-        Image processing function for GroundingDINO
-        (modified from https://github.com/IDEA-Research/GroundingDINO/blob/main/groundingdino/util/inference.py)
-        '''
+
         transform = GT.Compose(
             [
                 # GT.RandomResize([800], max_size=1333),
@@ -83,9 +67,7 @@ class DetectionModule:
         image: torch.Tensor,            # after detection_process_image()
         category: str,                # category to detect
     ):
-        '''
-        Run detection model (GroundingDINO)
-        '''
+
         # print(f"* [INFO] Running detection for {category}...")
 
         boxes, scores, _ = predict(
@@ -111,19 +93,6 @@ class DetectionModule:
         max_cols: int = 4,
         fontsize: int = 14,
     ):
-        """
-        original_img_arr: full original image (H,W,3) ndarray
-        crop_arr_list: cropped candidate bbox images (each H,W,3) ndarray
-
-        Panel layout:
-        - slot 0: original image. no index text. not a selection target.
-        - slot 1..N: crop_arr_list[i] is placed.
-            The text displayed in this panel is "i" (starting from 0).
-            i.e., crop_arr_list[0] -> "0", crop_arr_list[1] -> "1", ...
-
-        i.e., the numbers the VLM sees are always 0,1,2,... and,
-        boxesAbs[k] <-> label k mapping is preserved.
-        """
 
         # Full panel image list: [original] + [each crop]
         all_imgs = [original_img_arr] + crop_arr_list
@@ -181,16 +150,6 @@ class DetectionModule:
         boxes_output: List[List[int]],
         **sympl_args,
     ):
-        """
-        Run detection refinement with VLM
-        (Choose the best detection from top-N detections)
-
-        Changes:
-        - Add original image to the first panel (no index, not a selection target)
-        - Place crops in the following panels, labeling crop i with number i.
-        i.e., crop 0 -> '0', crop 1 -> '1', ...
-        - VLM returns one of 0,1,2,...
-        """
 
         W, H = image.size
 
@@ -313,22 +272,16 @@ class DetectionModule:
 
     def run_detection_refinement(
         self,
-        vlm_model,          # VLM model (defined in sympl_pipeline.py)
+        vlm_model,
         image: Image.Image,
         category: str,
         boxes_output: List[List[int]],
         conv_history: list = None,
         **sympl_args,
     ):
-        '''
-        Run detection refinement with VLM
-        (Choose the best detection from top-N detections)
-        '''
-        # print(f"* [INFO] Running detection refinement for {category}...")
 
         W, H = image.size
 
-        # ================== ADDED: enlarge bbox with margin ==================
         MARGIN = 30  # pixels to expand on each side
 
         def enlarge_and_clip_box(xmin, ymin, xmax, ymax, img_w, img_h, margin):
@@ -341,7 +294,6 @@ class DetectionModule:
             xmax2 = min(img_w, xmax + margin)
             ymax2 = min(img_h, ymax + margin)
             return int(xmin2), int(ymin2), int(xmax2), int(ymax2)
-        # =====================================================================
 
 
         # Convert relative boxes to absolute boxes
@@ -356,7 +308,6 @@ class DetectionModule:
         ]
 
 
-        # ================== ADDED: prepare enlarged boxes for cropping ==================
         boxesAbs_enlarged = []
         for box in boxesAbs:
             xmin, ymin, xmax, ymax = box
@@ -366,7 +317,6 @@ class DetectionModule:
                 MARGIN
             )
             boxesAbs_enlarged.append([xmin2, ymin2, xmax2, ymax2])
-        # =====================================================================
 
 
         # Get list of cropped images
@@ -403,13 +353,6 @@ class DetectionModule:
                 os.path.join(sympl_args['trace_save_dir'], f"detection_candidates_{category}.png")
             )
 
-        # Query VLM for the best detection
-        #prompt_refinement = f"""
-        #Select the image that best fits the description: '{category}'.
-        #Please return its index.
-        #"""
-
-        '''
         prompt_refinement = f"""
         The input images are cropped regions from the original image that correspond to the description: '{category}'.
         Examine each image and select the one that best matches the description: '{category}'.
@@ -445,12 +388,6 @@ class DetectionModule:
                 {'text': response, 'image': None},
             ]
 
-
-
-        # print(f"* [INFO] Response for VLM detection refinement: {response}")
-       
-        # print("CHECK", response)
-
         # Get the selected index
         selected_idx = 0
         for i in range(min(self.num_candidates, len(boxesAbs))):
@@ -466,9 +403,7 @@ class DetectionModule:
         image: Image.Image,
         box2d: List[int]       # detected 2D bbox
     ):
-        '''
-        Run segmentation model (SAM)
-        '''
+
         # Convert to BGR numpy array
         image_npy = np.array(image)
         image_bgr = cv2.cvtColor(image_npy, cv2.COLOR_RGB2BGR)

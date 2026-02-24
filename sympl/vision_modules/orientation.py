@@ -1,8 +1,3 @@
-'''
-Scene Abstraction:
-- Extract each object's frontal orientation
-- Model: OrientAnything (https://github.com/SpatialVision/Orient-Anything)
-'''
 from typing import List
 import os
 import sys
@@ -60,7 +55,7 @@ class OrientationModule:
     def _normalize(self, v, eps=1e-12):
         n = np.linalg.norm(v)
         if n < eps: 
-            return v  # return (0,0,0) as is (used briefly in exceptional cases and replaced soon)
+            return v  
         return v / n
 
     def _front_vec_from_azpol(self, azimuth_deg, polar_deg):
@@ -103,10 +98,7 @@ class OrientationModule:
         axis_texture_path: str = None,
         **sympl_args,
     ):
-        '''
-        Render the 3D axis
-        (Modified from https://github.com/SpatialVision/Orient-Anything/blob/main/utils.py)
-        '''
+
         if axis_obj_path is None:
             axis_obj_path = resolve_path("sympl/vision_modules/src/orient_anything/assets/axis.obj")
         if axis_texture_path is None:
@@ -131,10 +123,6 @@ class OrientationModule:
         return rendered_image
     
     def get_3angle(self, image):
-        '''
-        Get the 3D orientation of the object
-        (Modified from https://github.com/SpatialVision/Orient-Anything/blob/main/inference.py)
-        '''
         # Preprocess the image
         image_inputs = self.orientation_processor(images=image)
         image_inputs['pixel_values'] = torch.from_numpy(np.array(image_inputs['pixel_values'])).to(self.device)
@@ -161,10 +149,6 @@ class OrientationModule:
         background_image,
         target_size=(512, 512),
     ):
-        '''
-        Draw the axis on top of the image
-        (From https://github.com/SpatialVision/Orient-Anything/blob/main/utils.py)
-        '''
         if center_image.mode != "RGBA":
             center_image = center_image.convert("RGBA")
         if background_image.mode != "RGBA":
@@ -201,29 +185,7 @@ class OrientationModule:
         #mask: List[List[bool]] = None, 
         **sympl_args,
     ):
-        '''
-        Run orientation estimation of a single image
-        Returns the direction to which the object is facing
-        '''
-        """
-        # Crop the object region
-        if mask is not None:
-            # Convert PIL image to numpy array (RGB)
-            image_np = np.array(image.convert("RGB"))
-            mask_np = np.array(mask, dtype=bool)
 
-            # Resize if mask size and image size are different
-            if mask_np.shape != image_np.shape[:2]:
-                mask_img = Image.fromarray((mask_np * 255).astype(np.uint8)).resize(image.size)
-                mask_np = np.array(mask_img) > 127
-
-            # Keep only True parts and set rest to white (255,255,255)
-            white_bg = np.ones_like(image_np, dtype=np.uint8) * 255
-            image_np = np.where(mask_np[..., None], image_np, white_bg)
-
-            # Convert back to PIL image
-            image = Image.fromarray(image_np)
-        """
         if bbox is not None:
             image = image.crop((bbox[0], bbox[1], bbox[2], bbox[3]))
         

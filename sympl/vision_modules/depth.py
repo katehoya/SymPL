@@ -1,9 +1,3 @@
-'''
-Scene Abstraction:
-- Predict depth
-- Model: Depth Pro (https://github.com/apple/ml-depth-pro)
-'''
-
 import os
 import cv2
 import sys
@@ -41,7 +35,6 @@ class DepthModule:
             precision=torch.float16
         )
         self.depth_model.eval()
-        # print("* [INFO] Loaded depth model")
 
     def depth_process_image(
         self,
@@ -65,8 +58,7 @@ class DepthModule:
                 image = image.transpose(Image.ROTATE_270)
             elif exif_orientation == 8:
                 image = image.transpose(Image.ROTATE_90)
-            #elif exif_orientation != 1:
-                # print(f"Ignoring image orientation {exif_orientation}.")
+
 
         # Convert to numpy array
         image_npy = np.array(image)
@@ -212,14 +204,7 @@ class DepthModule:
         focal_len_ndc = 4.0
         focal_len = focal_len_ndc * image_w
         px, py = image_w / 2, image_h / 2
-        
-        """
-        K = np.array([
-            [focal_len, 0.0, px],
-            [0.0, focal_len, py],
-            [0.0, 0.0, 1.0]
-        ])
-        """
+
         # Convert to Open3D format
         depth_o3d = o3d.geometry.Image(depth)
         image_o3d = o3d.geometry.Image(np.array(image).astype(np.uint8))
