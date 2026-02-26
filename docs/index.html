@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <!-- TODO: Replace with your paper title and author names -->
+  <meta name="title"
+    content="Keep it SymPL: Symbolic Projective Layout for Allocentric Spatial Reasoning in Vision-Language Models - Jaeyun Jang, Seunghui Shin, Taeho Park, Hyoseok Hwang">
+  <!-- TODO: Write a compelling 150-160 character description of your research -->
+  <meta name="description"
+    content="A framework that reformulates allocentric reasoning into symbolic-layout forms that VLMs inherently handle well by leveraging four key factors — projection, abstraction, bipartition, and localization.">
+  <!-- TODO: Add 5-10 relevant keywords for your research area -->
+  <meta name="keywords"
+    content="AI, computer vision, spatial reasoning, allocentric reasoning, Perspective-Aware Reasoning, machine learning, CVPR, VLM">
+  <!-- TODO: List all authors -->
+  <meta name="author" content="Jaeyun Jang, Seunghui Shin, Taeho Park, Hyoseok Hwang">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <!-- TODO: Replace with your institution or lab name -->
+  <meta property="og:site_name" content="AIRLAB, Kyung Hee University">
+  <!-- TODO: Same as paper title above -->
+  <meta property="og:title"
+    content="Keep it SymPL: Symbolic Projective Layout for Allocentric Spatial Reasoning in Vision-Language Models">
+  <!-- TODO: Same as description above -->
+  <meta property="og:description"
+    content="A framework that reformulates allocentric reasoning into symbolic-layout forms that VLMs inherently handle well by leveraging four key factors — projection, abstraction, bipartition, and localization.">
+  <!-- TODO: Replace with your actual website URL -->
+  <meta property="og:url" content="https://github.com/AIRLABkhu/SymPL/">
+  <!-- TODO: Create a 1200x630px preview image and update path -->
+  <meta property="og:image" content="static/images/sympl.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SymPL - Research Preview">
+  <meta property="article:author" content="Jaeyun Jang">
+  <meta property="article:section" content="Computer Vision">
+  <meta property="article:tag" content="Vision-Language Models">
+  <meta property="article:tag" content="Allocentric Spatial Reasoning">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title"
+    content="Keep it SymPL: Symbolic Projective Layout for Allocentric Spatial Reasoning in Vision-Language Models - Jaeyun Jang, Seunghui Shin, Taeho Park, Hyoseok Hwang">
+  <meta name="citation_author" content="Jang, Jaeyun">
+  <meta name="citation_author" content="Shin, Seunghui">
+  <meta name="citation_author" content="Park, Taeho">
+  <meta name="citation_author" content="Hwang, Hyoseok">
+
+  <meta name="citation_publication_date" content="2026-06-01">
+  <meta name="citation_conference_title" content="CVPR 2026">
+  <meta name="citation_pdf_url" content="https://arxiv.org/abs/2602.19117">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+
+  <!-- TODO: Replace with your paper title and authors -->
+  <title>Keep it SymPL: Symbolic Projective Layout for Allocentric Spatial Reasoning in Vision-Language Models |
+    CVPR2026</title>
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/banner.png">
+  <link rel="apple-touch-icon" href="static/images/banner.png">
+
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Keep it SymPL: Symbolic Projective Layout for Allocentric Spatial Reasoning in Vision-Language Models",
+    "description": "A framework that reformulates allocentric reasoning into symbolic-layout forms that VLMs inherently handle well by leveraging four key factors — projection, abstraction, bipartition, and localization.",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jaeyun Jang",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Kyunghee University"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Seunghui Shin",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Kyunghee University"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Taeho Park",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Kyunghee University"
+        }
+      },
+      {
+        "@type": "Person",
+        "name": "Hyoseok Hwang",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Kyunghee University"
+        }
+      }
+
+    ],
+    "datePublished": "2026-06-01",
+    "publisher": {
+      "@type": "Organization",
+      "name": "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)"
+    },
+    "url": "https://github.com/AIRLABkhu/SymPL/",
+    "image": "https://github.com/AIRLABkhu/SymPL/static/images/sympl.png",
+    "keywords": ["AI, computer vision, spatial reasoning, allocentric reasoning, perspective-aware reasoning, machine learning, CVPR, VLM"],
+    "abstract": "Perspective-aware spatial reasoning involves understanding spatial relationships from specific viewpoints—either egocentric (observer-centered) or allocentric (object-centered). While vision–language models (VLMs) perform well in egocentric settings, their performance deteriorates when reasoning from allocentric viewpoints, where spatial relations must be inferred from the perspective of objects within the scene. In this study, we address this underexplored challenge by introducing Symbolic Projective Layout (SymPL), a framework that reformulates allocentric reasoning into symbolic-layout forms that VLMs inherently handle well. By leveraging four key factors—projection, abstraction, bipartition, and localization—SymPL converts allocentric questions into structured symbolic-layout representations. Extensive experiments demonstrate that this reformulation substantially improves performance in both allocentric and egocentric tasks, enhances robustness under visual illusions and multi-view scenarios, and that each component contributes critically to these gains. These results show that SymPL provides an effective and principled approach for addressing complex perspective-aware spatial reasoning.",
+    "isAccessibleForFree": true,
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "Computer Vision"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Spatial Reasoning"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Vision-Language Models"
+      }
+    ],
+    "identifier": [
+    {
+      "@type": "PropertyValue",
+      "propertyID": "arXiv",
+      "value": "2602.19117"
+    }
+    ]
+  }
+  </script>
+
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AIRLAB, Kyunghee University",
+    "url": "https://airlab.khu.ac.kr/",
+    "sameAs": [
+      "https://github.com/AIRLABkhu"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <!-- TODO: Replace with your paper title -->
+              <h1 class="title is-1 publication-title">Keep it SymPL: Symbolic Projective Layout for Allocentric Spatial
+                Reasoning in Vision-Language Models</h1>
+              <div class="is-size-5 publication-authors">
+                <!-- TODO: Replace with your paper authors and their personal links -->
+                <span class="author-block">
+                  <a href="https://sites.google.com/khu.ac.kr/jjy-fine/home" target="_blank">Jaeyun Jang</a>,</span>
+                <span class="author-block">
+                  <a href="https://seunghui-shin.github.io/" target="_blank">Seunghui Shin</a>,</span>
+                <span class="author-block">
+                  <a target="_blank">Taeho Park</a>,</span>
+                <span class="author-block">
+                  <a href="https://sites.google.com/view/hyoseok-hwang" target="_blank">Hyoseok Hwang</a><sup>*</sup>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <!-- TODO: Replace with your institution and conference/journal info -->
+                <span class="author-block">Kyunghee University<br>CVPR 2026</span>
+                <!-- TODO: Remove this line if no equal contribution -->
+                <!--<span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>-->
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- TODO: Update with your arXiv paper ID -->
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/2602.19117" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+
+                  <!-- TODO: Replace with your GitHub repository URL -->
+                  <span class="link-block">
+                    <a href="https://github.com/AIRLABkhu" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+
+                  <!-- TODO: Update with your arXiv paper ID -->
+                  <!--<span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>-->
+                  </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teaser Image-->
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <!-- TODO: Replace with your teaser Image -->
+          <img src="static/images/introduction.png" alt="SymPL teaser image" style="width: 100%; border-radius: 10px;">
+          <!-- TODO: Replace with your video description -->
+          <h2 class="subtitle has-text-centered">
+            <strong>Figure 1.</strong> SymPL reformulates allocentric questions into symbolic-layout questions using
+            four factors-projection, abstraction, bipartition, and localization-enabling significantly improved spatial
+            reasoning under allocentric settings.
+          </h2>
+        </div>
+
+        <div class="has-text-left" style="margin-top: 0.75em;">
+          <h5 class="title is-5  has-text-centered" style="margin-bottom: 1em;">Contributions</h5>
+          <ol style="padding-left: 2.4em; list-style-type:circle;">
+            <li style="padding-bottom: 0.3em;"> We introduce SymPL, a method that optimizes complex allocentric spatial
+              reasoning problems into forms where VLMs naturally excel. </li>
+            <li style="padding-bottom: 0.3em;"> SymPL transforms allocentric questions into symbolic layout questions
+              using four key factors: projection, abstraction, bipartition, and localization.</li>
+            <li style="padding-bottom: 0.3em;"> Experiments demonstrate that SymPL improves accuracy and ensures
+              consistent, robust perspective-aware spatial reasoning across both allocentric and egocentric settings.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <!-- End teaser Image -->
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <!-- TODO: Replace with your paper abstract -->
+              <p>
+                Perspective-aware spatial reasoning involves understanding spatial relationships from specific
+                viewpoints—either egocentric (observer-centered) or allocentric (object-centered). While vision–language
+                models (VLMs) perform well in egocentric settings, their performance deteriorates when reasoning from
+                allocentric viewpoints, where spatial relations must be inferred from the perspective of objects within
+                the scene. In this study, we address this underexplored challenge by introducing Symbolic Projective
+                Layout (SymPL), a framework that reformulates allocentric reasoning into symbolic-layout forms that VLMs
+                inherently handle well. By leveraging four key factors—projection, abstraction, bipartition, and
+                localization—SymPL converts allocentric questions into structured symbolic-layout representations.
+                Extensive experiments demonstrate that this reformulation substantially improves performance in both
+                allocentric and egocentric tasks, enhances robustness under visual illusions and multi-view scenarios,
+                and that each component contributes critically to these gains. These results show that SymPL provides an
+                effective and principled approach for addressing complex perspective-aware spatial reasoning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End paper abstract -->
+
+
+    <!-- Image carousel -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3 has-text-centered">Main Figure</h2>
+          <div class="item">
+            <!-- TODO: Replace with your research result images -->
+            <img src="static/images/main_figure.png" alt="First research result visualization" loading="lazy" />
+            <!-- TODO: Replace with description of this result -->
+            <h2 class="subtitle has-text-centered">
+              <strong>Figure 2.</strong> Overview of SymPL framework. SymPL reformulates an allocentric question into a
+              symbolic-layout question through two stages: 1. Spatial Information Extraction and 2. Question
+              Reformulation using four key factors — projection, abstraction, bipartition, and localization.
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End image carousel -->
+
+
+    <!-- Image carousel -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3 has-text-centered">Partition Rule</h2>
+          <div class="has-text-centered">
+            <!-- TODO: Replace with your research result images -->
+            <img src="static/images/symbolic_layout_rule.png" alt="First research result visualization" loading="lazy"
+              style="width:50%" />
+            <!-- TODO: Replace with description of this result -->
+            <h2 class="subtitle has-text-centered">
+              <strong>Figure 3.</strong> Partition rule based on spatial reasoning category. Directional comparisons
+              adopt a linear partition, while distance comparisons employ a circular one.
+            </h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End image carousel -->
+
+    <!-- Table carousel -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3 has-text-centered">Experiments</h2>
+
+          <!-- Carousel wrapper -->
+          <div id="experiments-carousel" class="carousel results-carousel">
+
+            <!-- Slide 1 -->
+            <div class="item">
+              <figure class="has-text-centered">
+                <img src="static/images/table1.png" alt="Table 1" loading="lazy"
+                  style="max-height: 520px; width: auto;">
+                <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+                  <strong>Table 1.</strong> Quantitative results on allocentric questions. Bold indicates the best,
+                  while underline represents the second best results.
+                </figcaption>
+              </figure>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="item">
+              <figure class="has-text-centered">
+                <img src="static/images/cocospatial.png" alt="Table 2" loading="lazy"
+                  style="max-height: 520px; width: auto;">
+                <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+                  <strong>Table 2.</strong> Quantitative results on egocentric questions. Bold indicates the best, while
+                  underline represents the second best results.
+                </figcaption>
+              </figure>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="item">
+              <figure class="has-text-centered">
+                <img src="static/images/comfort_vi.png" alt="Table 3" loading="lazy"
+                  style="max-height: 520px; width: auto;">
+                <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+                  <strong>Table 3.</strong> Quantitative results on perspective-aware reasoning under visual illusions.
+                  Bold indicates the best, while underline represents the second best results.
+                </figcaption>
+              </figure>
+            </div>
+            <!-- Slide 4 -->
+            <div class="item">
+              <figure class="has-text-centered">
+                <img src="static/images/comfort_multi.png" alt="Table 4" loading="lazy"
+                  style="max-height: 520px; width: auto;">
+                <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+                  <strong>Table 4.</strong> Quantitative results on viewpoint-aware consistency across multiple views.
+                  Bold indicates the best, while underline represents the second best results.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+          <!-- End carousel wrapper -->
+
+        </div>
+      </div>
+    </section>
+    <!-- End Table carousel -->
+
+
+    <!-- Ablation carousel -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3 has-text-centered">Ablation</h2>
+
+          <!-- Carousel wrapper -->
+          <div id="ablation-carousel" class="carousel results-carousel">
+
+            <!-- Slide 1 -->
+            <div class="item">
+              <figure class="has-text-centered">
+                <img src="static/images/ablation1.png" alt="Ablation Table" loading="lazy"
+                  style="max-height: 520px; width: auto;">
+                <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+                  <strong>Figure 4.</strong> Ablation results of each key factor. (a) projection, (b) abstraction, (c)
+                  bipartition, (d) localization. The darker bar indicates the configuration used in SymPL.
+                </figcaption>
+              </figure>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="item">
+              <figure class="has-text-centered">
+                <img src="static/images/ablation2.png" alt="Table 2" loading="lazy"
+                  style="max-height: 520px; width: auto;">
+                <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+                  <strong>Table 5.</strong> Ablation results on the effectiveness of four key factors: Projection,
+                  Abstraction, Bipartition, and Localization. Results show the average success rate of five
+                  general-purpose VLMs for each category: left/right, closer, visibility, and facing.
+                </figcaption>
+              </figure>
+            </div>
+            <!-- End Ablation wrapper -->
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Ablation carousel -->
+
+
+    <!-- Results carousel -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3 has-text-centered">Examples</h2>
+
+          <!-- Carousel wrapper -->
+          <div id="results-carousel" class="carousel results-carousel">
+
+            <!-- Slide 1 -->
+            <div class="item">
+              <figure class="has-text-centered">
+                <img src="static/images/dataset_sharp_3dsrbench.png" alt="Table 1" loading="lazy"
+                  style="max-height: 520px; width: auto;">
+                <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+                  <strong>Figure 5.</strong> Allocentric spatial reasoning examples. Qwen2.5-VL + SoM and APC-Vis
+                  exhibited limited allocentric spatial reasoning performance across various categories. In contrast,
+                  our SymPL effectively handled allocentric questions by reformulating them into symboliclayout
+                  questions.
+                </figcaption>
+              </figure>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="item">
+              <figure class="has-text-centered">
+                <img src="static/images/dataset_cocospatial.png" alt="Figure 6: COCOSPATIAL egocentric examples"
+                  loading="lazy" style="max-height: 520px; width: auto;">
+                <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+                  <strong>Figure 6.</strong> Egocentric spatial reasoning examples in the COCOSPATIAL dataset.
+                </figcaption>
+              </figure>
+            </div>
+            <!-- Slide 3 -->
+            <div class="item">
+              <figure class="has-text-centered">
+                <img src="static/images/dataset_comfort_vi.png" alt="Figure 7: COMFORT VI examples" loading="lazy"
+                  style="max-height: 520px; width: auto;">
+                <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+                  <strong>Figure 7.</strong> Perspective-aware spatial reasoning examples in the COMFORT VI dataset.
+                </figcaption>
+              </figure>
+            </div>
+
+            <!-- End Results wrapper -->
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Results carousel -->
+
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title">BibTeX</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre id="bibtex-code"><code>@inproceedings{jang2026sympl,
+  title={Keep it SymPL: Symbolic Projective Layout for Allocentric Spatial Reasoning in Vision-Language Models},
+  author={Jaeyun Jang and Seunghui Shin and Taeho Park and Hyoseok Hwang},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2026},
+  url={https://arxiv.org/abs/2602.19117}
+}</code></pre>
+      </div>
+    </section>
+    <!--End BibTex citation -->
+
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+
+              <p>
+                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                  target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                  href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                You are free to borrow the source code of this website, we just ask that you link back to this page in
+                the footer. <br> This website is licensed under a <a rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                  Commons Attribution-ShareAlike 4.0 International License</a>.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
