@@ -270,15 +270,13 @@
 
     <!-- Teaser Image-->
     <section class="hero teaser">
-      <div class="container is-max-desktop">
+      <div class="container">
         <div class="hero-body">
           <!-- TODO: Replace with your teaser Image -->
-          <img src="static/images/introduction.png" alt="SymPL teaser image" style="width: 100%; border-radius: 10px;">
+          <img src="static/gif/gif.gif" alt="SymPL teaser image" style="width: 150%; border-radius: 10px;">
           <!-- TODO: Replace with your video description -->
           <h2 class="subtitle has-text-centered">
-            <strong>Figure 1.</strong> SymPL reformulates allocentric questions into symbolic-layout questions using
-            four factors-projection, abstraction, bipartition, and localization-enabling significantly improved spatial
-            reasoning under allocentric settings.
+            VLMs demonstrate a notable performance degradation when reasoning from allocentric perspectives relative to egocentric ones. SymPL solves this problem by reformulating allocentric questions into symbolic-layout questions using four factors-projection, abstraction, bipartition, and localization.
           </h2>
         </div>
 
@@ -333,15 +331,13 @@
       <div class="hero-body">
         <div class="container">
           <h2 class="title is-3 has-text-centered">Main Figure</h2>
+          <!-- TODO: Replace with description of this result -->
+          <p class="subtitle has-text-centered">
+            SymPL reformulates an allocentric question into a symbolic-layout question through two stages: 1. Spatial Information Extraction and   2. Question Reformulation using four key factors — projection, abstraction, bipartition, and localization.
+          </p>
           <div class="item">
             <!-- TODO: Replace with your research result images -->
             <img src="static/images/main_figure.png" alt="First research result visualization" loading="lazy" />
-            <!-- TODO: Replace with description of this result -->
-            <h2 class="subtitle has-text-centered">
-              <strong>Figure 2.</strong> Overview of SymPL framework. SymPL reformulates an allocentric question into a
-              symbolic-layout question through two stages: 1. Spatial Information Extraction and 2. Question
-              Reformulation using four key factors — projection, abstraction, bipartition, and localization.
-            </h2>
           </div>
         </div>
       </div>
@@ -354,15 +350,14 @@
       <div class="hero-body">
         <div class="container">
           <h2 class="title is-3 has-text-centered">Partition Rule</h2>
+          <!-- TODO: Replace with description of this result -->
+          <p class="subtitle has-text-centered">
+            Partition rule based on spatial reasoning category. Directional comparisons adopt a linear partition, while distance comparisons employ a circular one.
+          <p>
           <div class="has-text-centered">
             <!-- TODO: Replace with your research result images -->
             <img src="static/images/symbolic_layout_rule.png" alt="First research result visualization" loading="lazy"
               style="width:50%" />
-            <!-- TODO: Replace with description of this result -->
-            <h2 class="subtitle has-text-centered">
-              <strong>Figure 3.</strong> Partition rule based on spatial reasoning category. Directional comparisons
-              adopt a linear partition, while distance comparisons employ a circular one.
-            </h2>
           </div>
         </div>
       </div>
@@ -384,8 +379,7 @@
                 <img src="static/images/table1.png" alt="Table 1" loading="lazy"
                   style="max-height: 520px; width: auto;">
                 <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-                  <strong>Table 1.</strong> Quantitative results on allocentric questions. Bold indicates the best,
-                  while underline represents the second best results.
+                  Quantitative results on allocentric questions. Bold indicates the best, underline represents the second best results. While general VLMs and other models specialized for spatial reasoning exhibit low performance on allocentric reasoning tasks, SymPL achieves superior performance in allocentric settings.
                 </figcaption>
               </figure>
             </div>
@@ -396,8 +390,7 @@
                 <img src="static/images/cocospatial.png" alt="Table 2" loading="lazy"
                   style="max-height: 520px; width: auto;">
                 <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-                  <strong>Table 2.</strong> Quantitative results on egocentric questions. Bold indicates the best, while
-                  underline represents the second best results.
+                  Results on egocentric questions. SymPL achieves high performance not only in allocentric reasoning but also in egocentric reasoning.
                 </figcaption>
               </figure>
             </div>
@@ -408,8 +401,7 @@
                 <img src="static/images/comfort_vi.png" alt="Table 3" loading="lazy"
                   style="max-height: 520px; width: auto;">
                 <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-                  <strong>Table 3.</strong> Quantitative results on perspective-aware reasoning under visual illusions.
-                  Bold indicates the best, while underline represents the second best results.
+                  Results on perspective-aware reasoning under visual illusions.
                 </figcaption>
               </figure>
             </div>
@@ -419,8 +411,7 @@
                 <img src="static/images/comfort_multi.png" alt="Table 4" loading="lazy"
                   style="max-height: 520px; width: auto;">
                 <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-                  <strong>Table 4.</strong> Quantitative results on viewpoint-aware consistency across multiple views.
-                  Bold indicates the best, while underline represents the second best results.
+                  Results on viewpoint-aware consistency across multiple views. Across images of the same scene captured from different viewpoints, SymPL maintains the most consistent performance, indicating robust and viewpoint-invariant allocentric reasoning capability.
                 </figcaption>
               </figure>
             </div>
@@ -448,8 +439,8 @@
                 <img src="static/images/ablation1.png" alt="Ablation Table" loading="lazy"
                   style="max-height: 520px; width: auto;">
                 <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-                  <strong>Figure 4.</strong> Ablation results of each key factor. (a) projection, (b) abstraction, (c)
-                  bipartition, (d) localization. The darker bar indicates the configuration used in SymPL.
+                  Ablation results of each key factor. Through ablation analysis, we verify that the four key factors integrated into SymPL yield significant performance improvements in VLMs.
+                  (a) projection, (b) abstraction, (c) bipartition, (d) localization. The darker bar indicates the configuration used in SymPL.
                 </figcaption>
               </figure>
             </div>
@@ -460,9 +451,7 @@
                 <img src="static/images/ablation2.png" alt="Table 2" loading="lazy"
                   style="max-height: 520px; width: auto;">
                 <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-                  <strong>Table 5.</strong> Ablation results on the effectiveness of four key factors: Projection,
-                  Abstraction, Bipartition, and Localization. Results show the average success rate of five
-                  general-purpose VLMs for each category: left/right, closer, visibility, and facing.
+                  Ablation results on the effectiveness of four key factors. Performance consistently improves across settings, with Setting 5 achieving 100% accuracy in all experiments, demonstrating that the four key factors synergistically enhance reasoning performance.
                 </figcaption>
               </figure>
             </div>
@@ -490,9 +479,9 @@
                 <img src="static/images/dataset_sharp_3dsrbench.png" alt="Table 1" loading="lazy"
                   style="max-height: 520px; width: auto;">
                 <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-                  <strong>Figure 5.</strong> Allocentric spatial reasoning examples. Qwen2.5-VL + SoM and APC-Vis
+                  Allocentric spatial reasoning examples. Qwen2.5-VL + SoM and APC-Vis
                   exhibited limited allocentric spatial reasoning performance across various categories. In contrast,
-                  our SymPL effectively handled allocentric questions by reformulating them into symboliclayout
+                  our SymPL effectively handled allocentric questions by reformulating them into symbolic layout
                   questions.
                 </figcaption>
               </figure>
@@ -504,7 +493,7 @@
                 <img src="static/images/dataset_cocospatial.png" alt="Figure 6: COCOSPATIAL egocentric examples"
                   loading="lazy" style="max-height: 520px; width: auto;">
                 <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-                  <strong>Figure 6.</strong> Egocentric spatial reasoning examples in the COCOSPATIAL dataset.
+                  Egocentric spatial reasoning examples in the COCOSPATIAL dataset.
                 </figcaption>
               </figure>
             </div>
@@ -514,7 +503,7 @@
                 <img src="static/images/dataset_comfort_vi.png" alt="Figure 7: COMFORT VI examples" loading="lazy"
                   style="max-height: 520px; width: auto;">
                 <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-                  <strong>Figure 7.</strong> Perspective-aware spatial reasoning examples in the COMFORT VI dataset.
+                  Perspective-aware spatial reasoning examples in the COMFORT VI dataset.
                 </figcaption>
               </figure>
             </div>
