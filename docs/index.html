@@ -264,19 +264,40 @@
         </div>
       </div>
     </section>
-
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <!-- TODO: Replace with your paper abstract -->
+              <p>
+                Perspective-aware spatial reasoning involves understanding spatial relationships from specific
+                viewpoints—either egocentric (observer-centered) or allocentric (object-centered). While vision–language
+                models (VLMs)
+                perform well in egocentric settings, their performance deteriorates when reasoning from allocentric
+                viewpoints, where spatial relations must be inferred from the
+                perspective of objects within the scene. In this study, we address this underexplored challenge by
+                introducing <strong>Symbolic Projective Layout (SymPL)</strong>, a framework that reformulates
+                allocentric
+                reasoning into symbolic-layout forms that VLMs inherently handle well. By leveraging four key
+                factors—projection, abstraction, bipartition, and localization—SymPL
+                converts allocentric questions into structured symbolic-layout representations. Extensive experiments
+                demonstrate that this reformulation substantially improves performance in both allocentric and
+                egocentric tasks, enhances robustness under visual illusions and multi-view scenarios, and that each
+                component contributes critically to these gains. These results show that SymPL provides an effective and
+                principled approach for addressing complex perspective-aware spatial reasoning.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End paper abstract -->
     <!-- Teaser Image-->
     <section class="hero teaser">
       <div class="container">
         <div class="hero-body">
-          <!-- TODO: Replace with your video description -->
-          <p class="subtitle is-5 has-text-centered">
-            VLMs demonstrate a notable performance degradation when reasoning from allocentric perspectives relative to
-            egocentric ones. <br>
-            SymPL solves this problem by reformulating allocentric questions into symbolic-layout
-            questions using four factors<br>
-            - projection, abstraction, bipartition, and localization.
-          </p>
           <!-- TODO: Replace with your teaser Image -->
           <img src="static/gif/introduction2.gif" alt="SymPL teaser image" style="width: 150%; border-radius: 10px;">
         </div>
@@ -292,10 +313,11 @@
           <h2 class="title is-3 has-text-centered">Main Framework</h2>
           <!-- TODO: Replace with description of this result -->
           <p class="subtitle has-text-centered">
-            SymPL reformulates an allocentric question into a symbolic-layout question through two stages: 1. Spatial
-            Information Extraction <br>
-            and 2. Question Reformulation using four key factors — projection, abstraction,
-            bipartition, and localization.
+            SymPL first extracts structured 3D scene information—object identities, positions, and the reference
+            viewer’s orientation—from an allocentric question using VLMs and foundation models.
+            The image is then transformed through projection, abstraction, bipartition, and localization into a
+            symbolic layout question, reformulating allocentric spatial reasoning into a form that VLMs
+            naturally excel at.
           </p>
           <div class="item">
             <!-- TODO: Replace with your research result images -->
@@ -310,8 +332,13 @@
     <section class="hero is-small">
       <div class="hero-body">
         <div class="container">
-          <h2 class="title is-3 has-text-centered">Experiments</h2>
-
+          <h2 class="title is-3 has-text-centered">The Synergy of Four Factors</h2>
+          <p class="subtitle has-text-centered">
+            We evaluate how the synergy of the four key factors—Projection, Abstraction, Bipartition, and
+            Localization—contributes to performance gains. To this end, we conducted an ablation study by progressively
+            integrating the four components. <br>
+            Only the symbolic layout question, incorporating all four components, achieved 100% accuracy.</br>
+          </p>
           <!-- Side-by-side layout -->
           <div class="columns is-centered">
             <div class="column is-8">
@@ -330,7 +357,7 @@
     <section class="hero is-small">
       <div class="hero-body">
         <div class="container">
-          <h2 class="title is-3 has-text-centered">Results</h2>
+          <h2 class="title is-3 has-text-centered">Qualitative Results Across Diverse Benchmarks</h2>
 
           <div id="results-carousel" class="carousel results-carousel">
 
@@ -352,7 +379,7 @@
                 <img src="static/images/dataset_cocospatial.png" alt="Figure 6: COCOSPATIAL egocentric examples"
                   loading="lazy" style="max-height: 520px; width: auto;">
                 <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-                  Egocentric spatial reasoning examples in the COCOSPATIAL dataset.
+                  Spatial reasoning examples in the egocentric dataset.
                 </figcaption>
               </figure>
             </div>
@@ -361,7 +388,7 @@
                 <img src="static/images/dataset_comfort_vi.png" alt="Figure 7: COMFORT VI examples" loading="lazy"
                   style="max-height: 520px; width: auto;">
                 <figcaption class="subtitle has-text-centered" style="margin-top: 0.75rem;">
-                  Perspective-aware spatial reasoning examples in the COFMRT VI dataset.
+                  Reliable perspective-aware spatial reasoning in the dataset with visual illusions.
                 </figcaption>
               </figure>
             </div>
