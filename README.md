@@ -5,8 +5,8 @@ The official implementation of "Keep it SymPL: Symbolic Projective Layout for Al
 <p align="center">
   <a href="https://sites.google.com/khu.ac.kr/jjy-fine/home" target="_blank"><strong>Jaeyun Jang</strong></a> ·
   <a href="https://seunghui-shin.github.io/" target="_blank"><strong>Seunghui Shin</strong></a> ·
-  <a href="https://airlab.khu.ac.kr/" target="_blank"><strong>Taeho Park</strong> ·
-  <a href="https://sites.google.com/view/hyoseok-hwang" target="_blank"><strong>Hyoseok Hwang</strong></a><sup>*</sup> .
+  <a href="https://airlab.khu.ac.kr/" target="_blank"><strong>Taeho Park</strong></a> ·
+  <a href="https://sites.google.com/view/hyoseok-hwang" target="_blank"><strong>Hyoseok Hwang</strong></a><sup>*</sup> 
 </p>
 
 <p align="center">
