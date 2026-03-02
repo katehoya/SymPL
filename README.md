@@ -1,10 +1,10 @@
 # Keep it SymPL: Symbolic Projective Layout for Allocentric Spatial Reasoning in Vision-Language Models
 
 <p align="center">
-  <strong>Jaeyun Jang</strong> ·
-  <strong>Seunghui Shin</strong> ·
+  <a href="https://sites.google.com/khu.ac.kr/jjy-fine/home" target="_blank"><strong>Jaeyun Jang</strong></a> ·
+  <a href="https://seunghui-shin.github.io/" target="_blank"><strong>Seunghui Shin</strong></a> ·
   <strong>Taeho Park</strong> ·
-  <strong>Hyoseok Hwang</strong>
+  <a href="https://sites.google.com/view/hyoseok-hwang" target="_blank"><strong>Hyoseok Hwang</strong></a><sup>*</sup>
 </p>
 
 <p align="center">
@@ -12,7 +12,7 @@
     <img src="https://img.shields.io/badge/arXiv-2602.19117-b31b1b.svg" />
   </a>
   <a href="https://airlabkhu.github.io/SymPL/">
-    <img src="https://img.shields.io/badge/Project-Page-blue" />
+    <img src="https://img.shields.io/badge/Project-SymPL-blue" />
   </a>
 </p>
 
