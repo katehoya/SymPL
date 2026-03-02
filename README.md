@@ -12,7 +12,7 @@
     <img src="https://img.shields.io/badge/arXiv-2602.19117-b31b1b.svg" />
   </a>
   <a href="https://airlabkhu.github.io/SymPL/">
-    <img src="https://img.shields.io/badge/Pub-Project-page-blue" />
+    <img src="https://img.shields.io/badge/Project-Page-blue" />
   </a>
 </p>
 
