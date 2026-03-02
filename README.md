@@ -73,4 +73,4 @@ You can cite our work by BiBTex.
 }
 ```
 ## Acknowledgement
-We would like to express our sincere gratitude to the authors of the following open-source projects. This work is built upon the incredible foundations provided by: [APC](https://github.com/KAIST-Visual-AI-Group/APC-VLM.git) (Apache License 2.0), [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL), [Grounding DINO](https://github.com/IDEA-Research/GroundingDINO), [Depth Pro](https://github.com/apple/ml-depth-pro), [SAM](https://github.com/facebookresearch/segment-anything), [Orient Anything](https://github.com/SpatialVision/Orient-Anything).
+We would like to express our sincere gratitude to the authors of the following open-source projects. This project is based on [APC](https://github.com/KAIST-Visual-AI-Group/APC-VLM.git). It is also built upon [Qwen2.5-VL](https://github.com/QwenLM/Qwen2.5-VL), [Grounding DINO](https://github.com/IDEA-Research/GroundingDINO), [Depth Pro](https://github.com/apple/ml-depth-pro), [SAM](https://github.com/facebookresearch/segment-anything), [Orient Anything](https://github.com/SpatialVision/Orient-Anything).
