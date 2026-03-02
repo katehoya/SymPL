@@ -73,4 +73,4 @@ You can cite our work by BiBTex.
 }
 ```
 ## Acknowledgement
-This project is partially derived from APC (Apache License 2.0).
+This project is partially derived from Perspective-Aware Reasoning in Vision-Language Models via Mental Imagery Simulation [[ICCV 2025]](https://github.com/KAIST-Visual-AI-Group/APC-VLM.git) (Apache License 2.0).
