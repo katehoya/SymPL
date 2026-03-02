@@ -23,15 +23,18 @@ Perspective-aware spatial reasoning involves understanding spatial relationships
 
 
 ![](docs/static/images/introduction.png)
-
+Figure 1. SymPL reformulates allocentric questions into symbolic layout questions using four factors-projection, abstraction, bipartition, and localization-enabling significantly improved spatial reasoning under allocentric settings.
 ## Main Framework
 
 ![](docs/static/images/main_figure.png)
-
+Figure 2. Overview of SymPL framework. SymPL reformulates an allocentric question into a symbolic-layout question through two stages: 1) Spatial Information Extraction and 2) Question Reformulation using four key factors — projection, abstraction, bipartition, and localization.
 ## Main Results
 
 ![](docs/static/images/main_table.png)
+Table 1. Quantitative results on allocentric questions. Bold indicates the best, while underline represents the second best results.
 
+![](docs/static/images/dataset_sharp_3dsrbench.png.png)
+Figure 3. Allocentric spatial reasoning examples. Qwen2.5-VL + SoM and APC-Vis exhibited limited allocentric spatial reasoning performance across various categories. In contrast, our SymPL effectively handled allocentric questions by reformulating them into symbolic layout questions.
 ## Installation
 
 #### Enviroments:
