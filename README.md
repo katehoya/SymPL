@@ -72,3 +72,6 @@ You can cite our work by BiBTex.
   url={https://arxiv.org/abs/2602.19117}
 }
 ```
+## License
+
+This project is licensed under the Apache License 2.0 — see the LICENSE file for details.
