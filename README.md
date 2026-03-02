@@ -12,7 +12,7 @@
     <img src="https://img.shields.io/badge/arXiv-2602.19117-b31b1b.svg" />
   </a>
   <a href="https://airlabkhu.github.io/SymPL/">
-    <img src="https://img.shields.io/badge/Project-SymPL-blue" />
+    <img src="https://img.shields.io/badge/Project-SymPL-yellow" />
   </a>
 </p>
 
@@ -24,47 +24,13 @@ Perspective-aware spatial reasoning involves understanding spatial relationships
 
 ![](docs/static/images/introduction.png)
 
-## Requirements 
+## Figures 
 
-DiffLocks dependencies can be installed from the provided `requirements.txt` which can be installed in a virtual environment: 
+## Main Results
 
-	$ python3 -m venv ./difflocks_env
-	$ source ./difflocks_env/bin/activate
-    $ pip install -r ./requirements.txt
+## Installation
 
-Afterwards we need to install custom CUDA kernels for the diffusion model:
-* [NATTEN](https://github.com/SHI-Labs/NATTEN/tree/main) for the sparse (neighborhood) attention used at low levels of the hierarchy.
-* [FlashAttention-2](https://github.com/Dao-AILab/flash-attention) for global attention.
-Please double check that you install Natten for torch 2.5.0 (as per requierments.txt).
-
-Finally if you want to perform inference, you need to download the checkpoints for the trained models. 
-The pretrained checkpoints can be downloaded by following [this section](#download-pretrained-checkpoints):
-
-    
-
-## Dataset
-![data](/imgs/dataset.png "dataset")
-The DiffLocks dataset consists 40K hairstyle. Each sample includes 3D hair (~100K strands), corresponding rendered RGB image and metadata regarding the hair. 
-
-DiffLocks can be downloaded using: 
-
-    ./download_dataset.sh <DATASET_PATH_CONTAINING_ZIPPED_FILES>
-
-After downloading, the dataset has to first be uncompressed:
-
-    $ ./data_processing/uncompress_data.py --dataset_zipped_path <DATASET_PATH_CONTAINING_ZIPPED_FILES> --out_path <DATASET_PATH>
-
-After uncompressing we create a processed dataset:
-
-	$ ./data_processing/create_chunked_strands.py --dataset_path <DATASET_PATH>
-	$ ./data_processing/create_latents.py --dataset_path=<DATASET_PATH> --out_path <DATASET_PATH_PROCESSED>
-	$ ./data_processing/create_scalp_textures.py --dataset_path=<DATASET_PATH> --out_path <DATASET_PATH_PROCESSED> --path_strand_vae_model ./checkpoints/strand_vae/strand_codec.pt
-
-
-## Download pretrained checkpoints
-You can download pretrained checkpoints by running:
-
-	./download_checkpoints.sh
+## Usage
 
 ## Inference
 To run inference on an RGB and create 3D strands use:
