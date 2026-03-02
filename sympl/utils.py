@@ -329,7 +329,11 @@ def symbolic_layout_prompting(
             simple_prompt = prompt_parser.get_prompt_by_type("lr_simple_two").format(obj_1=obj_color[1], obj_2=obj_color[2])
         else: return "fail"
         messages = add_message([], role='user', image=simple_img, text=simple_prompt)
+
+        print(f"\n[VLM Input Prompt]\n{simple_prompt}\n")
         res = vlm_model.process_messages(messages)
+        print(f"[VLM Output Response]\n{res}\n")
+
         if obj_num == 1:
             response_sympl = "Left" if 'yellow' in res.lower() else ("Right" if 'black' in res.lower() else "fail")
         elif obj_num == 2:
@@ -347,7 +351,10 @@ def symbolic_layout_prompting(
         if not found_cat: return "fail"
 
         simple_prompt = prompt_parser.get_prompt_by_type(type_map[found_cat]).format(obj_1=obj_color[1], obj_2=obj_color[2])
+        
+        print(f"\n[VLM Input Prompt]\n{simple_prompt}\n")
         res = vlm_model.process_messages(add_message([], image=simple_img, text=simple_prompt))
+        print(f"[VLM Output Response]\n{res}\n")
 
         if found_cat in ['closer', 'facing']:
             if obj_color[1].lower() in res.lower(): response_sympl = obj_name[1]
@@ -362,7 +369,10 @@ def symbolic_layout_prompting(
         obj_color = list(obj_color_dict.values())
         if len(obj_color) < 2: return "fail"
         simple_prompt = prompt_parser.get_prompt_by_type("visibility_simple").format(obj=obj_color[1])
+        
+        print(f"\n[VLM Input Prompt]\n{simple_prompt}\n")
         res = vlm_model.process_messages(add_message([], image=simple_img, text=simple_prompt))
+        print(f"[VLM Output Response]\n{res}\n")
         response_sympl = "Yes, Visible" if 'yellow' in res.lower() else ("Not" if 'black' in res.lower() else "fail")
 
     if conv_history is not None:

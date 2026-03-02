@@ -77,6 +77,9 @@ class SymPL:
         }
 
         assert sympl_args['trace_save_dir'] is not None, "trace_save_dir is required"
+        if visualize_trace and trace_save_dir:
+            if not os.path.exists(trace_save_dir):
+                os.makedirs(trace_save_dir)
         conv_history = [] if return_conv_history else None
 
         # Stage 1: Spatial Information Extraction
@@ -112,8 +115,8 @@ class SymPL:
         )
         if abstract_result == None:
             return "fail : object detection fail", conv_history
-
-        abstract_scene_dict = {'camera': abstract_result}
+        abstract_scene_dict = {}
+        abstract_scene_dict['camera'] = abstract_result
         abstract_scene_dict['camera']['top_view'] = top_view_position(
             abstract_scene_src=abstract_scene_dict['camera'],
             ref_viewer=ref_viewer,

@@ -310,7 +310,7 @@ def do_projection_2d(
 
     # 2. Project to 2D
     W, H = 512, 512
-    intrinsic = abstract_scene['camera']['intrinsic']
+    intrinsic = abstract_scene['camera']['camera']['intrinsic']
     u, v, meta = calculate_2d_coordinates(
         points_cam=obj_positions_np,
         K=intrinsic,
